@@ -3,6 +3,7 @@ type Promisable<T> = Promise<T> | T;
 
 export interface Options {
 	cwd: string;
+	clear: boolean;
 	ignore: Arrayable<RegExp | string>;
 }
 

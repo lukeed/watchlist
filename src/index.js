@@ -63,6 +63,8 @@ export async function watch(list, callback, opts={}) {
 		let stats = await toStats(tmp);
 		if (stats.isDirectory()) return;
 
+		if (opts.clear) console.clear();
+
 		Triggers.add(tmp);
 		await handle();
 		Triggers.delete(tmp);

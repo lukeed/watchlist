@@ -14,6 +14,7 @@ for (; i < argv.length; i++) {
 const opts = mri(argv, {
 	default: {
 		cwd: '.',
+		clear: true,
 	},
 	alias: {
 		cwd: 'C',
