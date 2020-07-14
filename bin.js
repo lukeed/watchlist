@@ -49,11 +49,22 @@ if (!command.length) {
 	process.exit(1);
 }
 
+const { exec } = require('child_process');
+const { promisify } = require('util');
 const { watch } = require('./dist');
-const dirs = opts._ || [opts.cwd];
+
+const run = promisify(exec);
+
+async function handler() {
+	console.clear();
+	let pid = await run(command);
+	if (pid.stdout) process.stdout.write(pid.stdout);
+	if (pid.stderr) process.stderr.write(pid.stderr);
+}
 
 try {
-	watch(dirs, command, opts);
+	const dirs = opts._ || [opts.cwd];
+	watch(dirs, handler, opts);
 } catch (err) {
 	console.log('Oops~!', err);
 }

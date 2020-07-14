@@ -1,9 +1,7 @@
 import { promisify } from 'util';
 import { resolve, join } from 'path';
 import { existsSync, readdir, stat, watch as fsw } from 'fs';
-import { exec } from 'child_process';
 
-const run = promisify(exec);
 const toStats = promisify(stat);
 const toRead = promisify(readdir);
 
@@ -39,7 +37,7 @@ async function setup(dir, onChange) {
 	return output;
 }
 
-export async function watch(list, command, opts={}) {
+export async function watch(list, callback, opts={}) {
 	const cwd = resolve('.', opts.cwd);
 	const dirs = new Set(list.map(str => resolve(cwd, str)).filter(existsSync));
 	const ignores = ['node_modules'].concat(opts.ignore || []).map(x => new RegExp(x, 'i'));
@@ -49,9 +47,7 @@ export async function watch(list, command, opts={}) {
 	const Watchers = new Map;
 
 	async function handle() {
-		let pid = await run(command);
-		if (pid.stdout) process.stdout.write(pid.stdout);
-		if (pid.stderr) process.stderr.write(pid.stderr);
+		await callback();
 		if (--wip) return handle();
 	}
 
@@ -68,7 +64,6 @@ export async function watch(list, command, opts={}) {
 		if (stats.isDirectory()) return;
 
 		Triggers.add(tmp);
-		console.clear();
 		await handle();
 		Triggers.delete(tmp);
 	}

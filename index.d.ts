@@ -1,8 +1,11 @@
 type Arrayable<T> = T[] | T;
+type Promisable<T> = Promise<T> | T;
 
 export interface Options {
 	cwd: string;
 	ignore: Arrayable<RegExp | string>;
 }
 
-export function watch(dirs: string[], command: string, opts?: Partial<Options>): Promise<void>;
+export type Handler = () => Promisable<any>;
+
+export function watch(dirs: string[], handler: Handler, opts?: Partial<Options>): Promise<void>;
