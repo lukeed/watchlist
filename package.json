@@ -2,7 +2,7 @@
   "name": "watchlist",
   "version": "0.0.0",
   "repository": "lukeed/watchlist",
-  "description": "WIP",
+  "description": "Resursively watch a list of directories & run a command on any file system changes",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
   "types": "index.d.ts",
