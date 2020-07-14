@@ -1,0 +1,42 @@
+{
+  "name": "watchlist",
+  "version": "0.0.0",
+  "repository": "lukeed/watchlist",
+  "description": "WIP",
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
+  "types": "index.d.ts",
+  "license": "MIT",
+  "bin": {
+    "watchlist": "bin.js"
+  },
+  "exports": {
+    "require": "./dist/index.js",
+    "import": "./dist/index.mjs"
+  },
+  "files": [
+    "*.js",
+    "*.d.ts",
+    "dist"
+  ],
+  "scripts": {
+    "build": "bundt",
+    "test": "node test"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "watch",
+    "watcher",
+    "watchfile",
+    "watchexec"
+  ],
+  "dependencies": {
+    "mri": "^1.1.5"
+  },
+  "devDependencies": {
+    "bundt": "1.0.1",
+    "esm": "3.2.25"
+  }
+}
