@@ -41,7 +41,7 @@ async function setup(dir, onChange) {
 
 export async function watch(list, command, opts={}) {
 	const cwd = resolve('.', opts.cwd);
-	const dirs = new Set(list.map(str => join(cwd, str)).filter(existsSync));
+	const dirs = new Set(list.map(str => resolve(cwd, str)).filter(existsSync));
 	const ignores = ['node_modules'].concat(opts.ignore || []).map(x => new RegExp(x, 'i'));
 
 	let wip = 0;
