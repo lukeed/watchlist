@@ -21,7 +21,7 @@
   ],
   "scripts": {
     "build": "bundt",
-    "test": "node test"
+    "test": "uvu -r esm test"
   },
   "engines": {
     "node": ">=8"
@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "bundt": "1.0.1",
-    "esm": "3.2.25"
+    "esm": "3.2.25",
+    "uvu": "0.2.2"
   }
 }
