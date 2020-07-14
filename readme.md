@@ -60,9 +60,14 @@ $ watchlist -- npm run lint
 ```js
 import { watch } from 'watchlist';
 
-// Run `npm test` when "{src,test}/**/*" changes
+async function task() {
+  console.log('~> something updated!');
+  await execute_example(); // linter, tests, build, etc
+}
+
+// Run `task()` when "{src,test}/**/*" changes
 // Must also ignore changes to any `/fixture/i` match
-await watch(['src', 'test'], 'npm test', {
+await watch(['src', 'test'], task, {
   ignore: 'fixtures'
 });
 ```
@@ -83,10 +88,10 @@ Please run `watchlist --help` for additional information.
 
 ## API
 
-### watch(dirs: string[], command: string, options?: Options);
+### watch(dirs: string[], handler: Function, options?: Options)
 Returns: `Promise<void>`
 
-Watch a list of directories recursively, running a command whenever their contents are modified.
+Watch a list of directories recursively, calling `handler` whenever their contents are modified.
 
 #### dirs
 Type: `Array<String>`
@@ -95,12 +100,12 @@ The list of directories to watch.
 
 May be relative or absolute paths. <br>All paths are resolved from the `opts.cwd` location.
 
-#### command
-Type: `String`
+#### handler
+Type: `Function`
 
-The command to run.
+The callback function to run.
 
-> **Important:** Passed through [`child_process.exec`](https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback) directly.
+> **Note:** This may be a Promise/`async` function. Return values are ignored.
 
 #### options.cwd
 Type: `String`<br>
@@ -111,11 +116,40 @@ The current working directory. All paths are resolved from this location. <br>De
 #### options.ignore
 Type: `String` or `RegExp` or `Array<String | RegExp>`
 
-A list of patterns that should **not** be watched nor should trigger a `command` execution. <br>Ignore patterns are applied to file and directory paths alike.
+A list of patterns that should **not** be watched nor should trigger a `handler` execution. <br>Ignore patterns are applied to file and directory paths alike.
 
 > **Note:** Any `String` values will be converted into a `RegExp` automatically.
+
+#### options.clear
+Type: `Boolean`<br>
+Default: `false`
+
+Whether or not the `console` should be cleared before re-running your `handler` function.
+
+> **Note:** Defaults to `true` for the CLI! Pass `--no-clear` to disable.
+
+### run(command: string, ...args)
+Returns: `Promise<void>`
+
+All arguments to `watchlist.run` are passed to [`child_process.exec`][child_exec] directly.
+
+> **Note:** Any `stdout` or `stderr` content will be piped/forwarded to your console.
+
+#### command
+Type: `String`
+
+The command string to execute. <br>View [`child_process.exec`][child_exec] for more information.
+
+#### args
+Type: `String`
+
+Additional [`child_process.exec`][child_exec] arguments.
+
+> **Important:** The `callback` argument is not available!
 
 
 ## License
 
 MIT © [Luke Edwards](https://lukeed.com)
+
+[child_exec]: https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback

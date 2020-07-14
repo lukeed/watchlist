@@ -4,6 +4,7 @@ import * as watchlist from '../src';
 
 test('exports', () => {
 	assert.type(watchlist, 'object');
+	assert.type(watchlist.run, 'function');
 	assert.type(watchlist.watch, 'function');
 });
 
