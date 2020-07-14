@@ -3,14 +3,14 @@
 </div>
 
 <div align="center">
-  <a href="https://npmjs.org/package/todo">
-    <img src="https://badgen.now.sh/npm/v/todo" alt="version" />
+  <a href="https://npmjs.org/package/watchlist">
+    <img src="https://badgen.now.sh/npm/v/watchlist" alt="version" />
   </a>
   <a href="https://github.com/lukeed/watchlist/actions">
     <img src="https://github.com/lukeed/watchlist/workflows/CI/badge.svg" alt="CI" />
   </a>
-  <a href="https://npmjs.org/package/todo">
-    <img src="https://badgen.now.sh/npm/dm/todo" alt="downloads" />
+  <a href="https://npmjs.org/package/watchlist">
+    <img src="https://badgen.now.sh/npm/dm/watchlist" alt="downloads" />
   </a>
   <a href="https://packagephobia.now.sh/result?p=watchlist">
     <img src="https://packagephobia.now.sh/badge?p=watchlist" alt="install size" />
