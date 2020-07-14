@@ -50,20 +50,10 @@ if (!command.length) {
 	process.exit(1);
 }
 
-const { exec } = require('child_process');
-const { promisify } = require('util');
-const { watch } = require('./dist');
-
-const run = promisify(exec);
-
-async function handler() {
-	console.clear();
-	let pid = await run(command);
-	if (pid.stdout) process.stdout.write(pid.stdout);
-	if (pid.stderr) process.stderr.write(pid.stderr);
-}
+const { run, watch } = require('./dist');
 
 try {
+	const handler = run.bind(0, command);
 	const dirs = opts._ || [opts.cwd];
 	watch(dirs, handler, opts);
 } catch (err) {
