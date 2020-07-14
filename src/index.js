@@ -1,7 +1,9 @@
 import { promisify } from 'util';
 import { resolve, join } from 'path';
 import { existsSync, readdir, stat, watch as fsw } from 'fs';
+import { exec } from 'child_process';
 
+const toExec = promisify(exec);
 const toStats = promisify(stat);
 const toRead = promisify(readdir);
 
@@ -75,4 +77,10 @@ export async function watch(list, callback, opts={}) {
 		output = await setup(dir, onChange.bind(0, dir));
 		for (key in output) Watchers.set(key, output[key]);
 	}
+}
+
+export async function run() {
+	let pid = await toExec.apply(0, arguments);
+	if (pid.stdout) process.stdout.write(pid.stdout);
+	if (pid.stderr) process.stderr.write(pid.stderr);
 }
