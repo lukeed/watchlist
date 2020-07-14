@@ -18,19 +18,19 @@
 </div>
 
 <div align="center">
-  Resursively <b>watch</b> a <b>list</b> of directories & run a command on any file system changes
+  Recursively <b>watch</b> a <b>list</b> of directories & run a command on any file system changes
 </div>
 
 
 ## Features
 
 * Extremely lightweight
-* Simple [`fs.watch`](https://nodejs.org/api/fs.html#fs_fs_watch_filename_options_listener) wrapper<sup>***</sup>
+* Simple [`fs.watch`](https://nodejs.org/api/fs.html#fs_fs_watch_filename_options_listener) wrapper<sup>†</sup>
 * Runs on OSX, Linux, and Windows
 * Recursively monitors all subdirectories
 * Optional ignore patterns
 
-> <sup>***</sup> While `fs.watch` has its inconsistencies, efforts are made to normalize behavior across platforms.
+> <sup>†</sup> While `fs.watch` has its inconsistencies, efforts are made to normalize behavior across platforms.
 
 
 ## Install
@@ -100,7 +100,7 @@ Type: `String`
 
 The command to run.
 
-> **Important:** Will be passed through [`child_process.exec`](https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback) directly.
+> **Important:** Passed through [`child_process.exec`](https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback) directly.
 
 #### options.cwd
 Type: `String`<br>
@@ -109,9 +109,9 @@ Default: `.`
 The current working directory. All paths are resolved from this location. <br>Defaults to `process.cwd()`.
 
 #### options.ignore
-Type: `String` or `RegExp` or `Array<String | RegExp`>
+Type: `String` or `RegExp` or `Array<String | RegExp>`
 
-A list of patterns that should **not** be watched and/or trigger a `command` execution. <br>Ignore patterns are applied to file and directory paths alike.
+A list of patterns that should **not** be watched nor should trigger a `command` execution. <br>Ignore patterns are applied to file and directory paths alike.
 
 > **Note:** Any `String` values will be converted into a `RegExp` automatically.
 
