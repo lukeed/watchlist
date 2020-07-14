@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="logo.jpg" alt="watchlist" height="180" />
+  <img src="logo.jpg" alt="watchlist" width="400" />
 </div>
 
 <div align="center">
