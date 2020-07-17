@@ -27,12 +27,12 @@ async function setup(dir, onChange) {
 	let output = {};
 
 	try {
-		output[dir] = fsw(dir, { recursive: true }, onChange);
+		output[dir] = fsw(dir, { recursive: true }, onChange.bind(0, dir);
 	} catch (err) {
 		if (err.code !== 'ERR_FEATURE_UNAVAILABLE_ON_PLATFORM') throw err;
-		output[dir] = fsw(dir, onChange);
+		output[dir] = fsw(dir, onChange.bind(0, dir));
 		await walk(dir, (rel, abs) => {
-			output[abs] = fsw(abs, onChange);
+			output[abs] = fsw(abs, onChange.bind(0, abs));
 		});
 	}
 
@@ -74,7 +74,7 @@ export async function watch(list, callback, opts={}) {
 
 	let dir, output, key;
 	for (dir of dirs) {
-		output = await setup(dir, onChange.bind(0, dir));
+		output = await setup(dir, onChange);
 		for (key in output) Watchers.set(key, output[key]);
 	}
 }
