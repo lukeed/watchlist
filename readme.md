@@ -26,7 +26,7 @@
 
 * Extremely lightweight
 * Simple [`fs.watch`](https://nodejs.org/api/fs.html#fs_fs_watch_filename_options_listener) wrapper<sup>†</sup>
-* Runs on OSX, Linux, and Windows
+* Runs on OSX and Windows
 * Recursively monitors all subdirectories
 * Optional ignore patterns
 
