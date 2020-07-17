@@ -29,7 +29,7 @@ async function setup(dir, onChange) {
 	try {
 		output[dir] = fsw(dir, { recursive: true }, onChange);
 	} catch (err) {
-		if (err.name !== 'ERR_FEATURE_UNAVAILABLE_ON_PLATFORM') throw err;
+		if (err.code !== 'ERR_FEATURE_UNAVAILABLE_ON_PLATFORM') throw err;
 		output[dir] = fsw(dir, onChange);
 		await walk(dir, (rel, abs) => {
 			output[abs] = fsw(abs, onChange);
