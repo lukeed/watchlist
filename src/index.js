@@ -60,7 +60,7 @@ export async function watch(list, callback, opts={}) {
 
 		let tmp = join(dir, filename);
 		if (Triggers.has(tmp) || !existsSync(tmp)) return;
-		if (wip++) return wip = 2;
+		if (wip++) return wip = 1;
 
 		let stats = await toStats(tmp);
 		if (stats.isDirectory()) return;
