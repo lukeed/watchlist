@@ -63,7 +63,7 @@ export async function watch(list, callback, opts={}) {
 		if (wip++) return wip = 1;
 
 		let stats = await toStats(tmp);
-		if (stats.isDirectory()) return;
+		if (stats.isDirectory()) return wip && wip--;
 
 		if (opts.clear) console.clear();
 
