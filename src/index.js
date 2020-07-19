@@ -27,7 +27,7 @@ async function setup(dir, onChange) {
 	let output = {};
 
 	try {
-		output[dir] = fsw(dir, { recursive: true }, onChange.bind(0, dir);
+		output[dir] = fsw(dir, { recursive: true }, onChange.bind(0, dir));
 	} catch (err) {
 		if (err.code !== 'ERR_FEATURE_UNAVAILABLE_ON_PLATFORM') throw err;
 		output[dir] = fsw(dir, onChange.bind(0, dir));
