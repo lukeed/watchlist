@@ -15,6 +15,7 @@ const opts = mri(argv, {
 	default: {
 		cwd: '.',
 		clear: true,
+		prerun: false,
 	},
 	alias: {
 		cwd: 'C',
@@ -36,6 +37,7 @@ if (opts.help) {
 	msg += '\n  Options';
 	msg += `\n    -C, --cwd       Directory to resolve from  (default .)`;
 	msg += `\n    -i, --ignore    Any file patterns to ignore`;
+	msg += '\n    --prerun   			Run command before initializing watch';
 	msg += '\n    -v, --version   Displays current version';
 	msg += '\n    -h, --help      Displays this message\n';
 	msg += '\n  Examples';

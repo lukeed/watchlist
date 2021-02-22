@@ -128,6 +128,12 @@ Whether or not the `console` should be cleared before re-running your `handler` 
 
 > **Note:** Defaults to `true` for the CLI! Pass `--no-clear` to disable.
 
+#### options.prerun
+Type: `Boolean`<br>
+Default: `false`
+
+Run the `command` ahead of the files being watched.
+
 ### run(command: string, ...args)
 Returns: `Promise<void>`
 

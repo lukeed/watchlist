@@ -53,6 +53,10 @@ export async function watch(list, callback, opts={}) {
 		if (--wip) return handle();
 	}
 
+	if (opts.prerun) {
+		await handle();
+	}
+
 	// TODO: Catch `EPERM` on Windows for removed dir
 	// TODO: `filename` existence still conditional?
 	async function onChange(dir, type, filename) {
