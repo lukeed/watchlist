@@ -128,6 +128,13 @@ Whether or not the `console` should be cleared before re-running your `handler` 
 
 > **Note:** Defaults to `true` for the CLI! Pass `--no-clear` to disable.
 
+#### options.eager
+Type: `Boolean`<br>
+Default: `false`
+
+When enabled, runs the `command` one time, after `watchlist` has initialized. When disabled, a change within the `dirs` list must be observed before the first `command` execution.
+
+
 ### run(command: string, ...args)
 Returns: `Promise<void>`
 
