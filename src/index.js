@@ -54,16 +54,12 @@ export async function watch(list, callback, opts={}) {
 	}
 
 	// TODO: Catch `EPERM` on Windows for removed dir
-	// TODO: `filename` existence still conditional?
 	async function onChange(dir, type, filename) {
 		if (ignores.some(x => x.test(filename))) return;
 
 		let tmp = join(dir, filename);
-		if (Triggers.has(tmp) || !existsSync(tmp)) return;
+		if (Triggers.has(tmp)) return;
 		if (wip++) return wip = 1;
-
-		let stats = await toStats(tmp);
-		if (stats.isDirectory()) return wip && wip--;
 
 		if (opts.clear) console.clear();
 
