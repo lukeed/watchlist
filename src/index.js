@@ -77,6 +77,10 @@ export async function watch(list, callback, opts={}) {
 		output = await setup(dir, onChange);
 		for (key in output) Watchers.set(key, output[key]);
 	}
+
+	if (opts.eager) {
+		await callback();
+	}
 }
 
 export async function run() {

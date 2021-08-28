@@ -15,9 +15,11 @@ const opts = mri(argv, {
 	default: {
 		cwd: '.',
 		clear: true,
+		e: false,
 	},
 	alias: {
 		cwd: 'C',
+		eager: 'e',
 		version: 'v',
 		ignore: 'i',
 		help: 'h',
@@ -35,6 +37,7 @@ if (opts.help) {
 	msg += '\n  Usage\n    $ watchlist [...directory] [options] -- <command>\n';
 	msg += '\n  Options';
 	msg += `\n    -C, --cwd       Directory to resolve from  (default .)`;
+	msg += `\n    -e, --eager     Execute the command on startup`;
 	msg += `\n    -i, --ignore    Any file patterns to ignore`;
 	msg += '\n    -v, --version   Displays current version';
 	msg += '\n    -h, --help      Displays this message\n';

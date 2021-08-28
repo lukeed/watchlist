@@ -8,6 +8,7 @@ export interface Options {
 	cwd: string;
 	clear: boolean;
 	ignore: Arrayable<RegExp | string>;
+	eager: boolean;
 }
 
 export type Handler = () => Promisable<any>;
