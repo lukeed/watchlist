@@ -1,6 +1,6 @@
 {
   "name": "watchlist",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "repository": "lukeed/watchlist",
   "description": "Recursively watch a list of directories & run a command on any file system changes",
   "module": "dist/index.mjs",
