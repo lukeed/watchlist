@@ -48,9 +48,9 @@ export async function watch(list, callback, opts={}) {
 	const Triggers = new Set;
 	const Watchers = new Map;
 
-	async function handle() {
-		await callback();
-		if (--wip) return handle();
+	async function handle(path) {
+		await callback(path);
+		if (--wip) return handle(path);
 	}
 
 	// TODO: Catch `EPERM` on Windows for removed dir
@@ -64,7 +64,7 @@ export async function watch(list, callback, opts={}) {
 		if (opts.clear) console.clear();
 
 		Triggers.add(tmp);
-		await handle();
+		await handle(tmp);
 		Triggers.delete(tmp);
 	}
 
