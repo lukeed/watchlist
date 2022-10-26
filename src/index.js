@@ -55,6 +55,7 @@ export async function watch(list, callback, opts={}) {
 
 	// TODO: Catch `EPERM` on Windows for removed dir
 	async function onChange(dir, type, filename) {
+		if (filename === null) return;
 		if (ignores.some(x => x.test(filename))) return;
 
 		let tmp = join(dir, filename);
